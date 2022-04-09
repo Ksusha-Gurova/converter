@@ -1,13 +1,12 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TerminalApi {
     private static final List<String> fromSystemSupported = List.of("2", "10");
     private static final List<String> toSystemSupported = List.of("2", "10", "16");
-    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private final static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     
 
 
@@ -24,9 +23,9 @@ public class TerminalApi {
     public static  void requestDataFromUser () {
         try {
             System.out.println("Укажиет из кокой системы сисления будем преобразовывать");
-            String fromSystem = getNumber(fromSystemSupported, reader);
+            String fromSystem = getSupportedNumber(fromSystemSupported, reader);
             System.out.println("Укажите в какую систему счисления будем преобразовывать");
-            String toSystem = getNumber(toSystemSupported, reader);
+            String toSystem = getSupportedNumber(toSystemSupported, reader);
             System.out.println("Укажите число для преобразования");
             String number = getAnyNumber(reader);
             System.out.println(convert(fromSystem, toSystem, number));
@@ -43,12 +42,12 @@ public class TerminalApi {
         }
         return temp;
     }
-    public static String getNumber (List<String> supportedValues, BufferedReader reader) throws IOException {
+    public static String getSupportedNumber(List<String> supportedValues, BufferedReader reader) throws IOException {
         String temp = getAnyNumber(reader);
         if(!supportedValues.contains(temp)){
             System.out.println("Вы ввели неверную систему счисления");
             System.out.println("мы поддерживаем " + supportedValues + " системы счисления");
-            return getNumber(supportedValues, reader);
+            return getSupportedNumber(supportedValues, reader);
         }
         return temp;
     }
