@@ -20,15 +20,18 @@ public class TerminalApi {
         System.out.println("16 - шестнадцатиричная система счисления");
     }
 
-    public static  void requestDataFromUser () {
+    public static void requestDataFromUser () {
         try {
-            System.out.println("Укажиет из кокой системы сисления будем преобразовывать");
+            System.out.println("Укажите из какой системы счисления будем преобразовывать");
             String fromSystem = getSupportedNumber(fromSystemSupported, reader);
             System.out.println("Укажите в какую систему счисления будем преобразовывать");
             String toSystem = getSupportedNumber(toSystemSupported, reader);
             System.out.println("Укажите число для преобразования");
             String number = getAnyNumber(reader);
-            System.out.println(convert(fromSystem, toSystem, number));
+            System.out.println("Ответ = " + convert(fromSystem, toSystem, number));
+            System.out.println("Для конвертации следующего числа нажмите Enter");
+            System.out.println("Для завершения работы программы напишите stop");
+            getAnyNumber(reader);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,6 +41,7 @@ public class TerminalApi {
         String temp = reader.readLine();
         if (temp.equals("stop")){
             reader.close();
+            System.out.println("Завершение работы программы");
             System.exit(0);
         }
         return temp;
