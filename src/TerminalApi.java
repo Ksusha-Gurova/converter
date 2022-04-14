@@ -51,6 +51,7 @@ public class TerminalApi {
         if(!supportedValues.contains(temp)){
             System.out.println("Вы ввели неверную систему счисления");
             System.out.println("мы поддерживаем " + supportedValues + " системы счисления");
+            System.out.println("Повторите запрос корректно");
             return getSupportedNumber(supportedValues, reader);
         }
         return temp;
